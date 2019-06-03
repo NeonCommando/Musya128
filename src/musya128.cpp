@@ -16,27 +16,27 @@ E-mail: nick1999fedotov@gmail.com
 
 //Функции
 
-bool ADD()
+bool Machine_model::add_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
     t = push_value(x+y);
     return t;}
 
-bool SUB()
+bool Machine_model::sub_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = push_value(y-x);
     return t;}
 
-bool MUL()
+bool Machine_model::mul_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
     t = push_value(x*y);
     return t;}
 
-bool DIV()
+bool Machine_model::div_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
@@ -45,7 +45,7 @@ bool DIV()
     else{push_value(y/x);}
     return t;}
 
-bool MOD()
+bool Machine_model::mod_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
@@ -54,7 +54,7 @@ bool MOD()
     else{push_value(y%x);}
     return t;}
 
-bool POWER()
+bool Machine_model::power_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
@@ -62,120 +62,120 @@ bool POWER()
     if(t){t = push_value(pow(y, x));}
     return t;}
 
-bool NEG()
+bool Machine_model::neg_func()
     {int x = pop_func();
     bool t = get_arguments(&x);
     t = push_value(-x);
     return t;}
 
-bool OR()
+bool Machine_model::or_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
     t = push_value(x|y);
     return t;}
 
-bool NOR()
+bool Machine_model::nor_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
     t = push_value((~y)|x);
     return t;}
 
-bool XOR()
+bool Machine_model::xor_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
     t = push_value(x^y);
     return t;}
 
-bool XOR1()
+bool Machine_model::xor1_func()
     {int x = pop_func();
     bool t = get_arguments(&x);
     t = push_value(x^1);
     return t;}
 
-bool AND()
+bool Machine_model::and_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
     t = push_value(x&y);
     return t;}
 
-bool NAND()
+bool Machine_model::nand_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
     t = push_value((~y)&x);
     return t;}
 
-bool LSH()
+bool Machine_model::lsh_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
     t = push_value(y<<x);
     return t;}
 
-bool RSH()
+bool Machine_model::rsh_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
     t = push_value(y>>x);
     return t;}
 
-bool NOT()
+bool Machine_model::not_func()
     {int x = pop_func();
     bool t = get_arguments(&x);
     t = push_value(~x);
     return t;}
 
-bool LT()
+bool Machine_model::lt_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
     t = push_value(y<x);
     return t;}
 
-bool GT()
+bool Machine_model::gt_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
     t = push_value(y>x);
     return t;}
 
-bool LEQ()
+bool Machine_model::leq_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
     t = push_value(y<=x);
     return t;}
 
-bool GEQ()
+bool Machine_model::geq_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
     t = push_value(y>=x);
     return t;}
 
-bool EQ()
+bool Machine_model::eq_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
     t = push_value(x==y);
     return t;}
 
-bool NEQ()
+bool Machine_model::neq_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
     t = push_value(x!=y);
     return t;}
 
-bool LDC()
+bool Machine_model::ldc_func()
     {bool t = push_value(registers.offset_register);
     return t;}
 
-bool LDV()
+bool Machine_model::ldv_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
@@ -183,7 +183,7 @@ bool LDV()
     if(t){t = push_value(y);}
     return t;}
 
-bool LDVR()
+bool Machine_model::ldvr_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
@@ -192,45 +192,45 @@ bool LDVR()
     if(t){t = push_value(y);}
     return t;}
 
-bool LD0()
+bool Machine_model::ld0_func()
     {bool t;
         t = push_value(0);
     return t;}
 
-bool LD1()
+bool Machine_model::ld1_func()
     {bool t = push_value(1);
     return t;}
 
-bool LDm1()
+bool Machine_model::ldm1_func()
     {bool t = push_value(-1);
     return t;}
 
-bool LDSPM()
+bool Machine_model::ldspm_func()
     {int x = pop_func();
     bool t = get_arguments(&x);
     registers.SPM = get_word_from_data_memory(x, &t);
     return t;}
 
-bool LDSF()
+bool Machine_model::ldsf_func()
     {int x = pop_func();
     bool t = get_arguments(&x);
     registers.SF = get_word_from_data_memory(x, &t);}
 
-bool LDSFR()
+bool Machine_model::ldsfr_func()
     {int x = pop_func();
     bool t = get_arguments(&x);
     x += registers.SF;
     registers.SF = get_word_from_data_memory(x, &t);
     return t;}
 
-bool ST()
+bool Machine_model::st_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
     t = set_word_in_data_memory(y, x);
     return t;}
 
-bool ST_ADD()
+bool Machine_model::stadd_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -241,7 +241,7 @@ bool ST_ADD()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool ST_SUB()
+bool Machine_model::stsub_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -252,7 +252,7 @@ bool ST_SUB()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool ST_MUL()
+bool Machine_model::stmul_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -263,7 +263,7 @@ bool ST_MUL()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool ST_DIV()
+bool Machine_model::stdiv_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -278,7 +278,7 @@ bool ST_DIV()
         }
     return t;}
 
-bool ST_MOD()
+bool Machine_model::stmod_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -293,7 +293,7 @@ bool ST_MOD()
         }
     return t;}
 
-bool ST_POWER()
+bool Machine_model::stpower_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -305,7 +305,7 @@ bool ST_POWER()
         }
     return t;}
 
-bool ST_OR()
+bool Machine_model::stor_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -316,7 +316,7 @@ bool ST_OR()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool ST_NOR()
+bool Machine_model::stnor_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -327,7 +327,7 @@ bool ST_NOR()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool ST_XOR()
+bool Machine_model::stxor_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -338,7 +338,7 @@ bool ST_XOR()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool ST_AND()
+bool Machine_model::stand_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -349,7 +349,7 @@ bool ST_AND()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool ST_NAND()
+bool Machine_model::stnand_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -360,7 +360,7 @@ bool ST_NAND()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool ST_LSH()
+bool Machine_model::stlsh_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -371,7 +371,7 @@ bool ST_LSH()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool ST_RSH()
+bool Machine_model::strsh_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -382,7 +382,7 @@ bool ST_RSH()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool STR()
+bool Machine_model::str_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
@@ -390,7 +390,7 @@ bool STR()
     t = set_word_in_data_memory(y, x);
     return t;}
 
-bool STR_ADD()
+bool Machine_model::stradd_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -402,7 +402,7 @@ bool STR_ADD()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool STR_SUB()
+bool Machine_model::strsub_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -414,7 +414,7 @@ bool STR_SUB()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool STR_MUL()
+bool Machine_model::strmul_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -426,7 +426,7 @@ bool STR_MUL()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool STR_DIV()
+bool Machine_model::strdiv_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -442,7 +442,7 @@ bool STR_DIV()
         }
     return t;}
 
-bool STR_MOD()
+bool Machine_model::strmod_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -458,7 +458,7 @@ bool STR_MOD()
         }
     return t;}
 
-bool STR_POWER()
+bool Machine_model::strpower_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -472,7 +472,7 @@ t = is_power_args_correct(z, x);
         }
     return t;}
 
-bool STR_OR()
+bool Machine_model::stror_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -484,7 +484,7 @@ bool STR_OR()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool STR_NOR()
+bool Machine_model::strnor_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -496,7 +496,7 @@ bool STR_NOR()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool STR_XOR()
+bool Machine_model::strxor_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -508,7 +508,7 @@ bool STR_XOR()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool STR_AND()
+bool Machine_model::strand_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -520,7 +520,7 @@ bool STR_AND()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool STR_NAND()
+bool Machine_model::strnand_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -532,7 +532,7 @@ bool STR_NAND()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool STR_LSH()
+bool Machine_model::strlsh_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -544,7 +544,7 @@ bool STR_LSH()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool STR_RSH()
+bool Machine_model::strrsh_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -556,19 +556,19 @@ bool STR_RSH()
         t = set_word_in_data_memory(y, z);}
     return t;}
 
-bool STSPM()
+bool Machine_model::stspm_func()
     {int x = pop_func();
     bool t = get_arguments(&x);
     t = set_word_in_data_memory(x, registers.SPM);
     return t;}
 
-bool STSF()
+bool Machine_model::stsf_func()
     {int x = pop_func();
     bool t = get_arguments(&x);
     t = set_word_in_data_memory(x, registers.SF);
     return t;}
 
-void STSFR()
+void Machine_model::stsfr_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
@@ -577,13 +577,13 @@ void STSFR()
     bool t = set_word_in_data_memory(x, y);
     return t;}
 
-bool JMP()
+bool Machine_model::jmp_func()
     {int x = pop_func();
     bool t;
     registers.IP = x;
     return t;}
 
-bool JZ()
+bool Machine_model::jz_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
@@ -591,7 +591,7 @@ bool JZ()
         {registers.IP = x;}
     return t;}
 
-bool JNZ()
+bool Machine_model::jnz_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
@@ -599,14 +599,14 @@ bool JNZ()
         {registers.IP = x;}
     return t;}
 
-bool CALL()
+bool Machine_model::call_func()
     {int x = pop_func();
     bool t = get_arguments(&x);
     t = push_value(registers.IP);
     registers.IP = x;
     return t;}
 
-bool CALLZ()
+bool Machine_model::callz_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
@@ -615,7 +615,7 @@ bool CALLZ()
         registers.IP = x;}
     return t;}
 
-bool CALLNZ()
+bool Machine_model::callnz_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
@@ -624,7 +624,7 @@ bool CALLNZ()
         registers.IP = x;}
     return t;}
 
-bool RET()
+bool Machine_model::ret_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
@@ -632,13 +632,13 @@ bool RET()
     registers.IP = y;
     return t;}
 
-bool OUT_INT()
+bool Machine_model::outint_func()
     {int x = pop_func();
     bool t = get_arguments(&x);
     cout<<x;
     return t;}
 
-bool OUT_STR()
+bool Machine_model::outstr_func()
     {int x = pop_func();
     bool t = get_arguments(&x);
     t = check_address_in_data_memory(x);
@@ -647,7 +647,7 @@ bool OUT_STR()
         cout<<pch;}
     return t;}
 
-bool IN_INT()
+bool Machine_model::inint_func()
     {int x = pop_func();
     bool t = get_arguments(&x);
     t=check_address_in_data_memory(x+3);
@@ -656,7 +656,7 @@ bool IN_INT()
         cin>>pi;}
     return t;}
 
-bool INR_INT()
+bool Machine_model::inrint_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
@@ -668,19 +668,19 @@ bool INR_INT()
         cin>>pi;}
     return t;}
 
-bool HLT()
+bool Machine_model::hlt_func()
     {cout<<"Машина заканчивает работу."<<endl;
     bool t = false;
     return t;}
 
-bool DUP()
+bool Machine_model::dup_func()
     {int x = pop_func();
     bool t = get_arguments(&x);
     t = push_value(x);
     t = push_value(x);
     return t;}
 
-bool SWAP()
+bool Machine_model::swap_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
@@ -688,21 +688,21 @@ bool SWAP()
     t = push_value(y);
     return t;}
 
-bool SPMADD()
+bool Machine_model::spmadd_func()
     {int x = pop_func();
     bool t = get_arguments(&x);
     registers.SPM += x;
     t = true;
     return t;}
 
-bool SPMSUB()
+bool Machine_model::spmsub_func()
     {int x = pop_func();
     bool t = get_arguments(&x);
     registers.SPM -= x;
     t = true;
     return t;}
 
-bool ENTER()
+bool Machine_model::enter_func()
     {int x = pop_func();
     int y = pop_func();
     int z;
@@ -725,7 +725,7 @@ bool ENTER()
     registers.SPM += x;
     return t;}
 
-bool LEAVE()
+bool Machine_model::leave_func()
     {int x = pop_func();
     int y = pop_func();
     bool t = get_arguments(&x, &y);
